@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" ng-controller="homeController">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+        <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+        <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+        <title>Epsilon 7.0</title>
+<toaster-container toaster-option="{'close-button':true}"></toaster-container>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="stylesheet" type="text/css" href="styles/skin.css">
+        <link rel="stylesheet" type="text/css" href="styles/framework.css">
+        <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="styles/toaster.min.css">
+       
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/plugins.js"></script>
+        <script type="text/javascript" src="scripts/custom.js"></script>
+        <script src="js/angular.min.js"></script>
+         <script src="js/toaster.min.js"></script>
+        <script src="js/controller.js"></script>
+        <script src="js/notify.js"></script>
+        <script src="js/ngStorage.min.js"></script>
+    </head>
+
+    <body>
+        <div class="pageLoader" ng-show="loader === true"></div>
+        <div id="page-transitions">
+            <!--        <div class="page-preloader page-preloader-dark">
+                        <div class="loader loader-frames"><i></i><i></i><i></i><i></i></div>
+                    </div>-->
+
+            <div class="header header-light header-full">
+                <a href="#" class="header-icon header-icon-1 open-left-sidebar"><i class="fa fa-navicon"></i></a>
+                <a href="" class="header-logo scale-hover"></a>
+                <a href="#" class="header-icon header-icon-4 open-right-sidebar"><i class="fa fa-envelope-o"></i></a>
+            </div>
+
+            <div id="page-content" class="page-content header-clear-full">
+                <div id="page-content-scroll">
+
+                    <div class="heading-strip bg-2">
+                        <h3>Activity Page</h3>
+                        <p>Updates and useful information</p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        <div class="overlay dark-overlay"></div>
+                    </div>
+                    <div class="decoration decoration-margins"></div>
+
+                    <div class="content material-full-top full-top">
+                        <div class="activity-page">
+                            <div class="activity-status">
+                                <i class="fa fa-check bg-green-dark"></i>
+                                <strong>All Systems Operatinal </strong>
+                                <em>Updated: 1 Minute Ago</em>
+                            </div>
+
+                            <div class="activity-item one-half-responsive">
+                                <i class="fa fa-circle color-green-dark"></i>
+                                <strong>Appointment Date</strong>
+                                <strong>{{appoitment.appoitment_date}}</strong>
+                            </div>                
+                            <div class="activity-item one-half-responsive last-column">
+                                <i class="fa fa-circle color-green-dark"></i>
+                                <strong>Full Name</strong>
+                                <strong>{{user.first_name}},{{user.last_name}}</strong>
+                            </div>                
+                            <div class="activity-item one-half-responsive">
+                                <i class="fa fa-circle color-blue-dark"></i>
+                                <strong>Appointment Day</strong>
+                                <strong>{{appoitment.appoitment_day}}</strong>
+                            </div>                
+                            <div class="activity-item one-half-responsive last-column">
+                                <i class="fa fa-circle color-orange-light"></i>
+                                <strong>Email</strong>
+                                <strong>{{user.email}} </strong>
+                            </div>               
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>        
+
+                    <div class="decoration decoration-margins"></div>
+
+                    <div class="footer footer-light">
+                        <a href="#" class="footer-logo scale-hover"></a>
+                        <p>
+                            Simplicity and complexity packed into a beautiful, 
+                            feature filled, powerful, gorgeous mobile template.
+                        </p>
+                        <div class="footer-socials">
+                            <a href="#" class="default-link icon icon-round no-border icon-xs facebook-bg"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="default-link icon icon-round no-border icon-xs twitter-bg"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="default-link icon icon-round no-border icon-xs google-bg"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="default-link icon icon-round no-border icon-xs phone-bg"><i class="fa fa-phone"></i></a>
+                            <a href="#" class="icon icon-round no-border icon-xs show-share-bottom bg-blue-dark"><i class="fa fa-retweet"></i></a>
+                            <a href="#" class="icon icon-round no-border icon-xs back-to-top bg-night-dark"><i class="fa fa-angle-up"></i></a>
+                        </div>
+                        <div class="decoration"></div>
+                        <p class="copyright-text">Copyright <span id="copyright-year"></span>. All Rights Reserved.</p>
+                    </div>
+
+                </div>  
+            </div>
+
+            <div class="sidebar-left sidebar-light">
+                <div class="sidebar-scroll">
+                    <div class="sidebar-header sidebar-header-background">
+                        <h1>Materialise</h1>
+                        <h2>Material at it's finest</h2>
+                        <img class="sidebar-logo-image preload-image" data-original="images/preload-logo.png">
+                        <div class="sidebar-header-controls">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-phone"></i></a>
+                            <a href="#"><i class="fa fa-envelope"></i></a>
+                            <a href="#" class="close-sidebar"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>        
+                    <div class="sidebar-divider">Navigation</div>
+                    <div class="sidebar-menu"> 
+                        <!--                    <a class="menu-item">
+                                                <i class="bg-green-dark fa fa-star-o"></i>Welcome<i class="fa fa-circle"></i> 
+                                            </a> -->
+                        <div class="has-submenu">
+                            <!--                        <a class="menu-item " href="home.html">
+                                                        <i class="bg-green-dark fa fa-home"></i>Home<i class="fa fa-circle"></i> 
+                                                    </a>-->
+                            <div class="menu-item " ng-click="home()"><!-- active-item -->
+                                <i class="bg-red-dark fa fa-question-circle"></i>Home<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item " ng-click="faq()"><!-- active-item -->
+                                <i class="bg-green-dark fa fa-question-circle"></i>Faq<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item " ng-click="about()"><!-- active-item -->
+                                <i class="bg-blue-dark fa fa-question-circle"></i>About<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="profile()"><!-- active-item -->
+                                <i class="bg-magenta-dark fa fa-user"></i>Profile<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="changePassword()"><!-- active-item -->
+                                <i class="bg-orange-dark fa fa-key"></i>Change Password<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="contact()"><!-- active-item -->
+                                <i class="bg-yellow-dark fa fa-phone"></i>Contact<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="question()"><!-- active-item -->
+                                <i class="bg-teal-dark fa fa-question-circle"></i>Question<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="product()"><!-- active-item -->
+                                <i class="bg-night-dark fa fa-shopping-bag"></i>Product<i class="fa fa-circle"></i>
+                            </div>
+                             <div class="menu-item" ng-click="appointment()"><!-- active-item -->
+                                <i class="bg-red-dark fa fa-calendar"></i>Your Appointment<i class="fa fa-circle"></i>
+                            </div>
+                             <div class="menu-item" ng-click="invoice()"><!-- active-item -->
+                                <i class="bg-blue-dark fa fa-file-code-o"></i>Invoice<i class="fa fa-circle"></i>
+                            </div>
+                            <div class="menu-item" ng-click="logout()"><!-- active-item -->
+                                <i class="bg-green-dark fa fa-sign-out"></i>SignOut<i class="fa fa-circle"></i>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="sidebar-divider no-bottom">Copyright <span id="copyright-year-sidebar"></span>. All rights Reserved</div>
+                </div>
+            </div>
+
+            <div class="sidebar-right sidebar-light">
+                <div class="sidebar-scroll">
+                    <div class="sidebar-header sidebar-header-background">
+                        <h1>Materialise</h1>
+                        <h2>Material at it's finest</h2>
+                        <img class="sidebar-logo-image preload-image" data-original="images/preload-logo.png">
+                        <div class="sidebar-header-controls">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-phone"></i></a>
+                            <a href="#"><i class="fa fa-envelope"></i></a>
+                            <a href="#" class="close-sidebar"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>   
+                    <div class="sidebar-divider">
+                        Let's get social
+                    </div>
+                    <div class="sidebar-menu">
+                        <a class="menu-item border-menu-yellow" href="#">
+                            <i class="facebook-bg fa fa-facebook"></i>Facebook<i class="fa fa-circle"></i>                        
+                        </a>            
+                        <a class="menu-item border-menu-lime" href="#">
+                            <i class="twitter-bg fa fa-twitter"></i>Twitter<i class="fa fa-circle"></i>                        
+                        </a>            
+                        <a class="menu-item border-menu-green" href="#">
+                            <i class="google-bg fa fa-google-plus"></i>Google<i class="fa fa-circle"></i>                        
+                        </a>       
+                        <a class="menu-item border-menu-teal" href="#">
+                            <i class="linkedin-bg fa fa-linkedin"></i>LinkedIn<i class="fa fa-circle"></i>                        
+                        </a>             
+                        <a class="menu-item border-menu-sky" href="#">
+                            <i class="youtube-bg fa fa-youtube-play"></i>YouTube<i class="fa fa-circle"></i>                        
+                        </a>   
+                        <a class="menu-item border-menu-blue" href="#">
+                            <i class="pinterest-bg fa fa-pinterest-p"></i>Pinterest<i class="fa fa-circle"></i>                        
+                        </a>                    
+                        <a class="menu-item border-menu-red" href="#">
+                            <i class="phone-bg fa fa-phone"></i>Call Us<i class="fa fa-circle"></i>                        
+                        </a>            
+                        <a class="menu-item border-menu-dawn" href="#">
+                            <i class="skype-bg fa fa-skype"></i>Skype Us<i class="fa fa-circle"></i>                        
+                        </a>            
+                        <a class="menu-item border-menu-orange" href="#">
+                            <i class="mail-bg fa fa-envelope-o"></i>Mail Us<i class="fa fa-circle"></i>                        
+                        </a>            
+                    </div>
+                    <div class="sidebar-divider no-bottom">
+                        SEND US A MESSAGE
+                    </div>
+                    <div class="sidebar-contact border-menu-dark">
+                        <div class="sidebar-form contact-form no-bottom">
+                            <p>
+                                Your message is important to us, and we'll get back to you in tops 48 hours
+                            </p>
+                            <div class="formSuccessMessageWrap" id="formSuccessMessageWrap">
+                                Awesome! We'll get back to you!
+                            </div>
+                            <form action="php/contact.php" method="post" class="contactForm" id="contactForm">
+                                <fieldset>
+                                    <div class="formValidationError" id="contactNameFieldError">Name is required!</div>             
+                                    <div class="formValidationError" id="contactEmailFieldError">Mail address required!</div> 
+                                    <div class="formValidationError" id="contactEmailFieldError2">Mail address must be valid!</div> 
+                                    <div class="formValidationError" id="contactMessageTextareaError">Message field is empty!</div>   
+                                    <div class="formFieldWrap">
+                                        <input onfocus="if (this.value == 'Name')
+                                                        this.value = ''" onblur="if (this.value == '')
+                                                                            this.value = 'Name'" type="text" name="contactNameField" value="Name" class="contactField requiredField" id="contactNameField"/>
+                                    </div>
+                                    <div class="formFieldWrap">
+                                        <input onfocus="if (this.value == 'Email')
+                                                        this.value = ''" onblur="if (this.value == '')
+                                                                            this.value = 'Email'" type="text" name="contactEmailField" value="Email" class="contactField requiredField requiredEmailField" id="contactEmailField"/>
+                                    </div>
+                                    <div class="formTextareaWrap">
+                                        <textarea onfocus="if (this.value == 'Message')
+                                                        this.value = ''" onblur="if (this.value == '')
+                                                                            this.value = 'Message'" name="contactMessageTextarea" class="contactTextarea requiredField" id="contactMessageTextarea">Message</textarea>
+                                    </div>
+                                    <div class="formSubmitButtonErrorsWrap">
+                                        <input type="submit" class="buttonWrap button button-green contactSubmitButton no-bottom" id="contactSubmitButton" value="SUBMIT" data-formId="contactForm"/>
+                                    </div>
+                                </fieldset>
+                            </form>       
+                        </div>
+                    </div>
+                    <div class="sidebar-divider no-bottom">Copyright <span id="copyright-year-sidebar"></span>. All rights Reserved</div>       
+                </div>
+            </div>      
+
+            <div class="page-menu light-footer-menu">
+                <div class="footer-menu-wrapper remove-menu">
+                    <div class="footer-menu-scroll">
+                        <div class="footer-menu">
+                            <div class="footer-menu-item active-menu">
+                                <em>System Status</em><i class="scale-hover bg-yellow-light fa fa-info"></i>
+                            </div>
+                            <div ng-click="faq()" class="footer-menu-item">
+                                <em>Faq</em><i class="scale-hover bg-orange-dark fa fa-question-circle"></i>
+                            </div>
+                            <div ng-click="profile()" class="footer-menu-item">
+                                <em>Profile</em><i class="scale-hover bg-red-dark fa fa-user"></i>
+                            </div>
+                            <div ng-click="changePassword()" class="footer-menu-item">
+                                <em>Change Password</em><i class="scale-hover bg-red-light fa fa-key"></i>
+                            </div>
+                            <div ng-click="contact()" class="footer-menu-item">
+                                <em>Contact</em><i class="scale-hover bg-magenta-dark fa fa-phone"></i>
+                            </div>
+                            <div ng-click="question()" class="footer-menu-item">
+                                <em>Question</em><i class="scale-hover bg-night-dark fa fa-question-circle"></i>
+                            </div>
+                            <div ng-click="product()" class="footer-menu-item">
+                                <em>Products</em><i class="scale-hover bg-night-dark fa fa-shopping-bag"></i>
+                            </div>
+                            <div ng-click="logout()" class="footer-menu-item">
+                                <em>Sign Out</em><i class="scale-hover bg-night-dark fa fa-sign-out"></i>
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>    
+            <div class="footer-menu-controls light-footer-menu">
+                <a href="#" class="footer-menu-open"><i class="fa fa-file-o bg-teal-dark"></i></a>
+                <a href="#" class="footer-menu-close remove-menu"><i class="fa fa-times bg-red-dark"></i><em>Close</em></a>
+            </div>
+            <div class="footer-menu-tap-close remove-menu"></div>
+            <div class="footer-menu-background light-footer-background remove-menu"></div>
+
+            <div class="share-bottom share-light">
+                <h3>Share Page</h3>
+                <div class="share-socials-bottom">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.themeforest.net/">
+                        <i class="fa fa-facebook facebook-color"></i>
+                        Facebook
+                    </a>
+                    <a href="https://twitter.com/home?status=Check%20out%20ThemeForest%20http://www.themeforest.net">
+                        <i class="fa fa-twitter twitter-color"></i>
+                        Twitter
+                    </a>
+                    <a href="https://plus.google.com/share?url=http://www.themeforest.net">
+                        <i class="fa fa-google-plus google-color"></i>
+                        Google
+                    </a>
+                    <a href="https://pinterest.com/pin/create/button/?url=http://www.themeforest.net/&media=https://0.s3.envato.com/files/63790821/profile-image.jpg&description=Themes%20and%20Templates">
+                        <i class="fa fa-pinterest-p pinterest-color"></i>
+                        Pinterest
+                    </a>
+                    <a href="sms:">
+                        <i class="fa fa-comment-o sms-color"></i>
+                        Text
+                    </a>
+                    <a href="mailto:?&subject=Check this page out!&body=http://www.themeforest.net">
+                        <i class="fa fa-envelope-o mail-color"></i>
+                        Email
+                    </a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="sidebar-tap-close"></div>
+            <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+
+        </div>
+    </body>
+</html>

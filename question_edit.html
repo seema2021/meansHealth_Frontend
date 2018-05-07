@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" ng-controller="qusetionController">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+        <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+        <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+        <title>Epsilon 7.0</title>
+    <toaster-container toaster-option="{'close-button':true}"></toaster-container>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/skin.css">
+    <link rel="stylesheet" type="text/css" href="styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="styles/toaster.min.css">
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/toaster.min.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+    <script src="js/notify.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+    <script type="text/javascript" src="scripts/plugins.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+    <style>
+        .hide-this {
+            display: none !important;
+        }
+        .answer-option li{
+            display: block;
+            color: black;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 18px;
+            line-height: 20px;
+            padding-left: 45px;
+            opacity: 0.7;
+
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 30px;
+        }
+
+
+        /* The container */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default radio button */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #000000;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .container .checkmark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pageLoader" ng-show="loader === true"></div>
+    <div id="page-transitions">
+        <!--            <div class="page-preloader page-preloader-dark">
+                        <div class="loader loader-frames"><i></i><i></i><i></i><i></i></div>
+                    </div>-->
+
+        <div class="header header-light">
+            <a href="#" class="header-logo scale-hover"></a>
+        </div>
+
+
+
+
+        <div class="bg bg-full"></div>
+
+        <div id="page-content" class="page-content header-clear">
+            <div id="page-content-scroll">
+                <div class="heading-strip bg-black">
+                    <h3 id="question-title">
+                        {{question.question}}  
+                        <b ng-if="question.type == 'multiple'">(you may choose more than 1 answer)</b>
+                        <b ng-if="question.type == 'single'">(you may choose only 1 answer)</b>
+                    </h3>
+                    <div class="overlay dark-overlay"></div>
+                </div>
+                <div class="page-interests">
+                    <div>
+                        <ul class="answer-option">
+                            <li ng-repeat="item in items">
+                                <label class="container">
+                                    <input type="checkbox" ng-model="item.selected" ng-true-value="true" ng-false-value="false" />{{item.value}}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <center>
+                            <button type="button" ng-if="backid > 1" class="button button-round button-blue button-blue-3d" ng-click="back()">Back</button>
+                            <button type="button" class="button button-round button-blue button-blue-3d" ng-click="next()">Next</button>
+                            <button type="button" class="button button-round button-blue button-blue-3d" ng-click="submit()">Submit</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="share-bottom share-light">
+            <h3>Share Page</h3>
+            <div class="share-socials-bottom">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.themeforest.net/">
+                    <i class="fa fa-facebook facebook-color"></i>
+                    Facebook
+                </a>
+                <a href="https://twitter.com/home?status=Check%20out%20ThemeForest%20http://www.themeforest.net">
+                    <i class="fa fa-twitter twitter-color"></i>
+                    Twitter
+                </a>
+                <a href="https://plus.google.com/share?url=http://www.themeforest.net">
+                    <i class="fa fa-google-plus google-color"></i>
+                    Google
+                </a>
+                <a href="https://pinterest.com/pin/create/button/?url=http://www.themeforest.net/&media=https://0.s3.envato.com/files/63790821/profile-image.jpg&description=Themes%20and%20Templates">
+                    <i class="fa fa-pinterest-p pinterest-color"></i>
+                    Pinterest
+                </a>
+                <a href="sms:">
+                    <i class="fa fa-comment-o sms-color"></i>
+                    Text
+                </a>
+                <a href="mailto:?&subject=Check this page out!&body=http://www.themeforest.net">
+                    <i class="fa fa-envelope-o mail-color"></i>
+                    Email
+                </a>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="sidebar-tap-close"></div>
+        <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+
+    </div>
+</body>
+</html>

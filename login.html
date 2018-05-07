@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" ng-controller="authController">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+        <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+        <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+        <title>Login</title>
+    <toaster-container toaster-option="{'close-button':true}"></toaster-container>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/skin.css">
+    <link rel="stylesheet" type="text/css" href="styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="styles/toaster.min.css">
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/toaster.min.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <!--  <script type="text/javascript" src="js/user.js"></script>-->
+
+    <script type="text/javascript" src="scripts/plugins.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+</head>
+
+<body>
+    <div class="pageLoader" ng-show="loader === true"></div>
+    <div id="page-transitions">
+
+
+        <!--    <div class="page-preloader page-preloader-dark">
+              <div class="loader loader-frames"><i></i><i></i><i></i><i></i></div>
+            </div>-->
+
+
+
+        <div id="page-content" class="page-content">
+            <div id="page-content-scroll" class="header-clear">
+
+                <div class="page-fullscreen bg-2">
+                    <div class="page-fullscreen-content">
+                        <form class="register-form" name="myForm">
+                            <div class="pageapp-login">
+                                <a href="#" class="pageapp-login-logo">
+                                    <img src="images/preload-logo.png">
+                                </a>
+                                <div class="pageapp-login-input">
+                                    <i class="login-icon fa fa-envelope"></i>
+                                    <input type="email" placeholder="Email" required="" ng-model="user.email" name="email">
+                                </div>
+                                <div class="pageapp-login-input full-bottom">
+                                    <i class="login-icon fa fa-lock"></i>
+                                    <input type="password" placeholder="Password" required=""  ng-model="user.password" name="password">
+                                </div>
+                                <div class="pageapp-login-links">
+                                    <div ng-click="forgetpass()" class="page-login-forgot"><i class="fa fa-eye"></i>Forgot Credentials</div>
+                                    <div ng-click="register()" class="page-login-create">Create Account<i class="fa fa-user"></i></div>
+  <div class="clear"></div>
+                                </div>
+<!--                                <button type="sumbit" href ng-click="login(user)" class="button-green button-icon button-full half-top full-bottom">
+                                    <i class="fa fa-angle-right"></i>Login</button>-->
+                                <div ng-click="login(user)" class="button button-green button-icon button-full half-top full-bottom"><i class="fa fa-angle-right"></i>Login</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="overlay dark-overlay"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+
+    </div>
+    <!--  <script>
+        $(document).ready(
+          showAlert('success', 'abcdefg')
+        );
+      </script>-->
+</body>
+</html>

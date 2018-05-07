@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" ng-controller="checkoutController">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+        <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+        <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+        <title>Epsilon 7.0</title>
+    <toaster-container toaster-option="{'close-button':true}"></toaster-container>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/skin.css">
+    <link rel="stylesheet" type="text/css" href="styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="styles/toaster.min.css">
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/plugins.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />                 <!--PayPal-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!--PayPal-->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>   <!--PayPal-->
+    <script src="js/angular.min.js"></script>
+    <script src="js/notify.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/toaster.min.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+</head>
+
+<body>
+    <div class="pageLoader" ng-show="loader === true"></div>
+    <div id="page-transitions">
+        <!--            <div class="page-preloader page-preloader-dark">
+                        <div class="loader loader-frames"><i></i><i></i><i></i><i></i></div>
+                    </div>-->
+
+        <div class="header header-light header-full">
+            <a href="index.html" class="header-logo scale-hover"></a>
+        </div>
+
+        <div id="page-content" class="page-content header-clear-full">
+            <div id="page-content-scroll">
+
+                <div class="heading-strip bg-black">
+                    <h3>Checkout</h3>
+                    <div class="overlay dark-overlay"></div>
+                </div>
+
+                <div class="content material-no-top material-full-bottom full-bottom">
+                    <div class="page-invoice">        
+                        <div class="invoice-body full-bottom">
+                            <h4 class="invoice-header">
+                                <strong class="color-green-dark">
+                                    <i class="fa fa-check"></i>Your Products Details</strong> 
+
+                            </h4>
+
+                            <div class="clear"></div>
+                        </div>
+                        <div class="decoration half-bottom"></div>
+
+                        <div class="invoice-item" ng-repeat="cart in carts">
+                            <h1>{{cart.name}}</h1>
+                            <h3>${{cart.price}}</h3>
+                        </div>                
+                        <!--                <div class="invoice-item">
+                                            <h1>Drug</h1>
+                                            <h2>Sildenafil: 1 x $15.00 + Tax</h2>
+                                            <h2>Tadalafil: 1 x $15.00 + Tax</h2>
+                                            <h3>$15.00</h3>
+                                        </div>                -->
+                        <div class="invoice-total">
+                            <h3 style="color: #2abb67;">Sub Total</h3>
+                            <h4 class="color-green-dark" style=" margin-left: 20px;">$ {{total}}</h4>
+                        </div>
+                        <div class="decoration half-bottom"></div>
+                        <div class="invoice-item">                            
+                            <h1>{{delivery.drug}}</h1>
+                            <div ng-if="delivery.drug === 'pick'">
+                                <h3 style=" top: -47px;">$0.00</h3>
+                            </div>
+                            <div ng-if="delivery.drug === 'delivery'">
+                            <h3 style=" top: -47px;">$11.00</h3>
+                            </div>
+                        </div>                
+
+                        <div class="invoice-total full-bottom">
+                            <h1 class="color-orange-dark">Grand Total</h1>
+                            <h2 class="color-orange-dark">${{grand_total}}</h2>
+                        </div>              
+                        <div class="decoration"></div>
+
+                        <h3>Payment Information</h3>
+                        <p class="half-bottom">
+                        </p>        
+
+                        <div class="store-check-out-1 full-bottom">
+                            <div class="payment-menthods">
+                                <h6>Select a payment method</h6>    
+                                <div ng-click="paypal()"> <img src="https://www.braintreepayments.com/images/features/paypal/paypal-button@2x-69b78052.png" style="height: 33px;
+                                                               width: 173px;"></div>
+                                <!--PayPal-->
+                                <!--                                    <script>
+                                                                                paypal.Button.render({
+                                
+                                                                                    env: 'production', // sandbox | production
+                                
+                                                                                    // PayPal Client IDs - replace with your own
+                                                                                    // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                                                                                    client: {
+                                                                                        //sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                                                                                        production: 'AdRlNphT71HzLfpof0M26WWk113fHS-4HZlB24oE0HrkTXQX6E6HT-EF7KvzZOssD45v-E213-jqGuWu'
+                                                                                    },
+                                                                                    // Show the buyer a 'Pay Now' button in the checkout flow
+                                                                                    commit: true,
+                                
+                                //                                                    payment: function () {
+                                //                                                        // Set up the payment here
+                                //                                                    },
+                                                                                    payment: function (data, actions) {
+                                
+                                                                                        // Make a call to the REST api to create the payment
+                                                                                        return actions.payment.create({
+                                                                                            payment: {
+                                                                                                transactions: [
+                                                                                                    {
+                                                                                                        amount: {total: {{grand_total}}, currency: 'USD'}
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        });
+                                                                                    },
+                                
+                                                                                    onAuthorize: function (data, actions) {
+                                
+                                                                                        // Make a call to the REST api to execute the payment
+                                                                                        return actions.payment.execute().then(function () {
+                                //                                                            location.href = "http://spotthegolfball.co.uk/paypal";
+                                                                                        });
+                                                                                    }
+                                
+                                                                                }, '#paypal-button');
+                                                                    </script>-->
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+
+                <div class="decoration decoration-margins"></div>
+
+                <div id="paypal-button"></div>
+
+
+                <div class="footer footer-light">
+
+                    <div class="decoration"></div>
+                    <p class="copyright-text">Copyright <span id="copyright-year"></span>. All Rights Reserved.</p>
+                </div>
+
+            </div>  
+        </div>
+
+
+        <div class="sidebar-tap-close"></div>
+        <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+
+    </div>
+</body>
+</html>

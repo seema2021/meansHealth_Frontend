@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp" ng-controller="productController" ng-init="init()">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="icon" type="image/png" href="images/splash/android-chrome-192x192.png" sizes="192x192">
+        <link rel="apple-touch-icon" sizes="196x196" href="images/splash/apple-touch-icon-196x196.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/splash/apple-touch-icon-180x180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/splash/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="images/splash/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="images/splash/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/splash/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="images/splash/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/splash/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="images/splash/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="images/splash/apple-touch-icon-57x57.png">
+        <link rel="icon" type="image/png" href="images/splash/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/splash/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/splash/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="images/splash/favicon.ico" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+        <title>Epsilon 7.0</title>
+<toaster-container toaster-option="{'close-button':true}"></toaster-container>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="stylesheet" type="text/css" href="styles/skin.css">
+        <link rel="stylesheet" type="text/css" href="styles/framework.css">
+        <link rel="stylesheet" type="text/css" href="styles/toaster.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/controller.js"></script>
+        <script src="js/toaster.min.js"></script>
+        <script src="js/ngStorage.min.js"></script>
+        <script src="js/notify.js"></script>
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/plugins.js"></script>
+        <script type="text/javascript" src="scripts/custom.js"></script>
+        <script src="js/store.js" type="text/javascript"></script>
+        <link rel = "stylesheet" type = "text/css" href = "css/bootstrap.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <style>
+            .inc{
+                background: black;
+            }
+            .dec{
+                background: black;
+            }
+            .add_product{
+                color: #FFFFFF;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0px 5px 10px 5px;
+    background-color: #2980b9;
+        width: 120px;
+            }
+            
+        </style>
+<div class="pageLoader" ng-show="loader === true"></div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <h1 class="well">
+                        <a href="default.htm">
+                            <img src="img/logo.png" height="60" width="60" alt="logo" />
+                        </a>
+                    </h1>
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+        <div id="page-transitions">
+<!--            <div class="page-preloader page-preloader-dark">
+                <div class="loader loader-frames"><i></i><i></i><i></i><i></i></div>
+            </div>-->
+
+            <div class="header header-light header-full">
+                <a href="#" class="header-logo scale-hover"></a>
+            </div>
+
+            <div id="page-content" class="page-content header-clear">
+                <div id="page-content-scroll">
+                    <div class="heading-strip bg-black">
+                        <h3 style="width: 70%;">Which of these drugs would you like to use?</h3>
+
+                        <button type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-right: 8%;
+    /* margin-top: 1%; */
+    color: #0af76e;">${{total}}</i></button>
+
+
+                        <div class="overlay dark-overlay"></div>
+                    </div>
+
+                    <div class="content material-full-bottom"> 
+
+                        <div class="store-cart-2">
+                            <div class="cart-item" ng-repeat = "product in products">
+                                <img src="http://medicalratios.net/Menas_health_Api/public/{{product.image}}" alt="img" class="preload-image">
+                                <h1>{{product.name}}</h1>
+                                <h2>${{product.price}}</h2>
+                                <h3>{{product.name}}</h3>    
+                                <center><button type = "button" class="add_product" ng-click = "add_cart(product)"><span class = "glyphicon glyphicon-shopping-cart"></span> Add to cart</button></center>
+                               
+                            </div>  
+
+
+                            <div class="clear"></div>
+
+                        </div>    
+                    </div>
+
+                    <form>
+                        <div ng-repeat="cart in carts track by $index">
+                            <input type="hidden" required="" name="name" ng-model="cart.id" value="{{cart.id}}">
+                            <input type="hidden" required="" name="name" ng-model="cart.name" value="{{cart.name}}">
+                            <input type="hidden" required="" name="price" ng-model="cart.price" value="{{cart.price}}"> 
+                        </div>
+                         
+                        
+                        <div><center>
+                                <button class="button button-round button-blue button-blue-3d" type="submit" ng-click="submit()">Next</button></div> 
+                    </form>
+
+
+                </div>  
+            </div>
+
+
+
+            <div class="container">
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">My Shopping Card</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class = "panel-body table-responsive">
+                                    <table class = "table">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat = "cart in carts" ng-init = "setTotals(cart)">
+                                                <td>{{cart.name}}</td>
+                                                <td>${{cart.price}}</td>
+                                                <td><button type = "button" ng-click = "remove_cart(cart)" class = "btn btn-danger"><span class = "glyphicon glyphicon-remove"></span></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td align = "right">Total</td>
+                                                <td>${{total}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-tap-close"></div>
+            <a href="#" class="back-to-top-badge"><i class="fa fa-caret-up"></i>Back to Top</a>
+
+        </div>
+        
+        <script>
+            if (localStorage.message) {
+          $("#message").val(localStorage.message);
+        }
+                    $(function () {
+
+                        $(".numbers-row").append('<div class="inc button">+</div><div class="dec button">-</div>');
+
+                        $(".button").on("click", function () {
+
+                            var $button = $(this);
+                            var oldValue = $button.parent().find("input").val();
+
+                            if ($button.text() == "+") {
+                                var newVal = parseFloat(oldValue) + 1;
+                            } else {
+                                // Don't allow decrementing below zero
+                                if (oldValue > 0) {
+                                    var newVal = parseFloat(oldValue) - 1;
+                                } else {
+                                    newVal = 0;
+                                }
+                            }
+
+                            $button.parent().find("input").val(newVal);
+
+                        });
+
+                    });
+        </script>
+    </body>
+</html>
